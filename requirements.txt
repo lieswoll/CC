@@ -1,0 +1,7 @@
+telethon
+pytz
+Pillow
+aiofiles
+aiohttp-socks
+aiohttp
+requests
