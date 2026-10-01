@@ -16,6 +16,7 @@ async def send_realtime_hit_full(*a, **k):
 
 import subprocess as _sp  # 🔧 FIX: self-heal installer scope
 import sys as _sys
+import traceback as _traceback
 
 class _SafeEvent:
     """🔧 FIX: missing-event fallback — kabhi bhi NameError/crash nahi."""
@@ -9398,7 +9399,9 @@ if __name__ == "__main__":
             error_str = str(e)
 
             # ✅ यहाँ 4 स्पेस का इंडेंटेशन सही है
-            print(f"💥 Bot crashed: {error_str}")
+            print(f"💥 Bot crashed: {error_str}", flush=True)
+            _traceback.print_exc()
+            print("[TRACEBACK-END]", flush=True)
 
             if "FloodWaitError" in error_str or "rate limited" in error_str.lower() or "429" in error_str:
                 wait_seconds = 5
