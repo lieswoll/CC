@@ -17,6 +17,16 @@ async def send_realtime_hit_full(*a, **k):
 import subprocess as _sp  # 🔧 FIX: self-heal installer scope
 import sys as _sys
 import traceback as _traceback
+import signal as _signal
+import atexit as _atexit
+
+def _debug_exit_signal(signum, frame):
+    print(f"[PROCESS-SIGNAL] received {signum}; container is stopping", flush=True)
+    raise SystemExit(128 + signum)
+
+_signal.signal(_signal.SIGTERM, _debug_exit_signal)
+_signal.signal(_signal.SIGINT, _debug_exit_signal)
+_atexit.register(lambda: print("[PROCESS-EXIT] Python interpreter exiting", flush=True))
 
 class _SafeEvent:
     """🔧 FIX: missing-event fallback — kabhi bhi NameError/crash nahi."""
