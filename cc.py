@@ -9366,7 +9366,7 @@ if __name__ == "__main__":
     print("🔥 GOD MODE BOT ENGAGED — FLOODWATCH ACTIVE 🔥 [ENGINE: %s]" % ENGINE_REV)
 
     retry_count = 0
-    max_retries = 9999
+    max_retries = 1
 
     while retry_count < max_retries:
         try:
